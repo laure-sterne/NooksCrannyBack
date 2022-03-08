@@ -12,10 +12,15 @@ Configuration :
 Création base de donnée sur VSC commit "database table created" puis importation dans pgadmin:
 table browser : query tool, select file dans dossier data "create_tables" de notre repo
 
-Pour demain Mardi 08 Mars : 
+Mardi 08 Mars : 
 
---> relier notre base de donnée à notre projet : hébergement de la base de donnée 
+-passage sur phpmyAdmin pour gérer la base de donnée 
 
+Monter le serveur :
 documentation pour monter le serveur express : 
 https://expressjs.com/fr/4x/api.html#app
 commande pour lancer le serveur : node index.js 
++ fichier de configuration ".env" (avec nos variables d'environnement ex: port, data_url) important pour ne pas commit des infos types mot de passe, identifiant etc) 
+
+Mettre en place les sessions : 
+documentation : https://github.com/expressjs/session
