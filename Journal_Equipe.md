@@ -15,3 +15,7 @@ table browser : query tool, select file dans dossier data "create_tables" de not
 Pour demain Mardi 08 Mars : 
 
 --> relier notre base de donnée à notre projet : hébergement de la base de donnée 
+
+documentation pour monter le serveur express : 
+https://expressjs.com/fr/4x/api.html#app
+commande pour lancer le serveur : node index.js 
