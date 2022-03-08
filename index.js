@@ -2,17 +2,16 @@
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 
 //username and password
 const myusername = 'user1'
 const mypassword = 'mypassword'
 
 // a variable to save a session
-var session;
-
+// var session;
 
 // création de la variable pour gérer les sessions 
-const sessions = require('express-session');
 
 //création d'une instance d'express
 const app = express();
@@ -34,19 +33,21 @@ app.use(sessions({
 
 //première route basique de test de mise en place
 app.get('/',(req,res) => {
-  session=req.session;
-  if(session.userid){
+  if(req.session.userid){
       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
   }else
   res.sendFile('./index.html',{root:__dirname})
 });
 
+app.get('/user', (req, res) => {
+  res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
+})
+
 app.post('/user',(req,res) => {
   if(req.body.username == myusername && req.body.password == mypassword){
-      session=req.session;
-      session.userid=req.body.username;
+      req.session.userid=req.body.username;
       console.log(req.session)
-      res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+      res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
   }
   else{
       res.send('Invalid username or password');
