@@ -16,7 +16,22 @@ const mypassword = 'mypassword'
 //création d'une instance d'express
 const app = express();
 
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root',
+  port: 8889
+});
 
+connection.connect();
+
+connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+  if (err) throw err;
+  console.log('The solution is: ', rows[0].solution);
+});
+
+connection.end();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
