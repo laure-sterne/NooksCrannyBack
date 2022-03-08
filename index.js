@@ -8,17 +8,12 @@ const sessions = require('express-session');
 const myusername = 'user1'
 const mypassword = 'mypassword'
 
-// a variable to save a session
-// var session;
-
-// création de la variable pour gérer les sessions 
 
 //création d'une instance d'express
 const app = express();
 
 //connection à la BDD`
 var mysql      = require('mysql');
-const { Query } = require('pg');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -28,17 +23,13 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
+
+//connexion de test
 connection.query({sql: 'SELECT * FROM `meubles`',
 timeout: 40000}, function (err, result) {
   if(err) throw err;
   console.log(result)
 })
-
-
-// connection.query('SELECT * FROM `followers`', function(err, rows, fields) {
-//   if (err) throw err;
-//   console.log(err);
-// });
 
 connection.end();
 
