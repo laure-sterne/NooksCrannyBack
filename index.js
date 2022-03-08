@@ -16,20 +16,29 @@ const mypassword = 'mypassword'
 //création d'une instance d'express
 const app = express();
 
+//connection à la BDD`
 var mysql      = require('mysql');
+const { Query } = require('pg');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  port: 8889
+  port: 8889,
+  database : 'boutiquenook'
 });
 
 connection.connect();
+connection.query({sql: 'SELECT * FROM `meubles`',
+timeout: 40000}, function (err, result) {
+  if(err) throw err;
+  console.log(result)
+})
 
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-  console.log('The solution is: ', rows[0].solution);
-});
+
+// connection.query('SELECT * FROM `followers`', function(err, rows, fields) {
+//   if (err) throw err;
+//   console.log(err);
+// });
 
 connection.end();
 
