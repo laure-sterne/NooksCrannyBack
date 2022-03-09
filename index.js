@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  port: 8889,
+  port: 3306,
   database : 'boutiquenook'
 });
 
@@ -34,8 +34,7 @@ connection.query(
   if(err) throw err;
   console.log(result)
 })
-
-//connection.end();
+connection.end();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
