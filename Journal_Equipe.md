@@ -6,7 +6,7 @@ Lundi 07 Mars :
 
 Configuration :
 -postgreSQL, express, node.js 
-(depuis notre repo, npm init, npm install express, npm install express-session, npm install pg, npm bcrypt), quand on "pullera", faire un npm install pour récupérer toutes les installations 
+(depuis notre repo, npm init, npm install express, npm install express-session, npm install pg, npm bcrypt), quand on "pullera", faire un npm install pour récupérer toutes les installations (et ne pas oublier la création du fichier .env en s'inspirant du modèle .env.exemple qui sera stocké automatiquement dans gitignore)
 -créer une team sur postman pour pouvoir tester nos requêtes "API meubles"(pas possible d'être plus de trois :() 
 
 Création base de donnée sur VSC commit "database table created" puis importation dans pgadmin:
@@ -23,4 +23,11 @@ commande pour lancer le serveur : node index.js
 + fichier de configuration ".env" (avec nos variables d'environnement ex: port, data_url) important pour ne pas commit des infos types mot de passe, identifiant etc) 
 
 Mettre en place les sessions : 
-documentation : https://github.com/expressjs/session
+documentation : https://github.com/expressjs/session, 
+SURTOUT CELUI-LA https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/
+--> On a mis en place une version test, à modifier en fonction des besoins du front 
+
+
+
+
+

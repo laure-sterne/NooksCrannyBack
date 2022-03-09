@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  port: 8889,
+  port: 3306,
   database : 'boutiquenook'
 });
 
@@ -30,7 +30,6 @@ timeout: 40000}, function (err, result) {
   if(err) throw err;
   console.log(result)
 })
-
 connection.end();
 
 app.use(express.json());
