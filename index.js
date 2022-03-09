@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const bcrypt = require('bcrypt')
 
 //username and password
 const myusername = 'user1'
@@ -81,17 +82,30 @@ app.get('/logout',(req,res) => {
 // API endpoints //
 
 // créer un user 
-app.post('/createuser',(req,res) => {
+app.post('/createuser', async (req,res) => {
 
-  // faire l'échappemment 
   // dire au front de demander un mail valide 
+ 
+  // faire l'échappemment 
+  var mail = connection.escape(req.body.mail)
+  var pseudo = connection.escape(req.body.pseudo)
+  var mdp = connection.escape(req.body.mdp)
+
   // check if user exist 
-  var mail = req.body.mail
-  var mdp = req.body.mdp
-  var pseudo = req.body.pseudo
+  connection.query({
+    sql: ``,
+    timeout: 40000}, 
+
+  })
+
+
+  // crypter mdp 
+  await bcrypt.hash(mdp, 10).then(hash => {mdp = hash})
+
+
 
   connection.query({
-  sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, '${mail}', '${mdp}', '${pseudo}')`, 
+  sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, ${mail}, '${mdp}', ${pseudo})`, 
   timeout: 40000}, function (err, result) {
     if(err) throw err;
     console.log(result)
