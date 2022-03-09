@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
-  port: 3306,
+  port : process.env.PORTPHP || 8889,
   database : 'boutiquenook'
 });
 
@@ -34,7 +34,6 @@ connection.query(
   if(err) throw err;
   console.log(result)
 })
-connection.end();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -83,7 +82,6 @@ app.get('/logout',(req,res) => {
 // créer un user 
 app.post('/createuser', async (req,res) => {
 
-  // dire au front de demander un mail valide 
  
   // faire l'échappemment 
   var mail = connection.escape(req.body.mail)
@@ -92,10 +90,11 @@ app.post('/createuser', async (req,res) => {
 
   // check if user exist 
   connection.query({
-    sql: ``,
-    timeout: 40000}, 
-
-  })
+    sql: 'SELECT * FROM `utilisateur`',
+    timeout: 40000}, function (err, result) {
+      if(err) throw err;
+      console.log(result)
+    })
 
   // crypter mdp 
   await bcrypt.hash(mdp, 10).then(hash => {mdp = hash})
