@@ -87,17 +87,16 @@ app.post('/createuser', async (req,res) => {
   var mail = connection.escape(req.body.mail)
   var pseudo = connection.escape(req.body.pseudo)
   var mdp = connection.escape(req.body.mdp)
+  await bcrypt.hash(mdp, 10).then(hash => {mdp = hash})
 
   // check if user exist 
   connection.query({
-    sql: 'SELECT * FROM `utilisateur`',
+    sql: `SELECT mail FROM utilisateur WHERE mail = ${mail} `,
     timeout: 40000}, function (err, result) {
-      if(err) throw err;
-      console.log(result)
-    })
-
-  // crypter mdp 
-  await bcrypt.hash(mdp, 10).then(hash => {mdp = hash})
+      if(err){throw err};
+      if(result[0]){res.send("email déjà inscrit")
+      console.log(result) } 
+      else {
 
   connection.query({
   sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, ${mail}, '${mdp}', ${pseudo})`, 
@@ -106,7 +105,13 @@ app.post('/createuser', async (req,res) => {
     console.log(result)
   })
   res.send("utilisateur créé")
+  }
+}
+)
 })
+
+  // crypter mdp 
+  
 
 
 // créer un meuble 
