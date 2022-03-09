@@ -97,11 +97,8 @@ app.post('/createuser', async (req,res) => {
 
   })
 
-
   // crypter mdp 
   await bcrypt.hash(mdp, 10).then(hash => {mdp = hash})
-
-
 
   connection.query({
   sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, ${mail}, '${mdp}', ${pseudo})`, 
