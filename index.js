@@ -8,7 +8,6 @@ const sessions = require('express-session');
 const myusername = 'user1'
 const mypassword = 'mypassword'
 
-
 //création d'une instance d'express
 const app = express();
 
@@ -22,11 +21,15 @@ var connection = mysql.createConnection({
   database : 'boutiquenook'
 });
 
-connection.connect();
+connection.connect(error => {
+  if (error) throw error;
+  console.log("Successfully connected to the database.");
+});
 
 //connexion de test
-connection.query({sql: 'SELECT * FROM `meubles`',
-timeout: 40000}, function (err, result) {
+connection.query(
+  {sql: 'SELECT * FROM `meubles`',
+  timeout: 40000}, function (err, result) {
   if(err) throw err;
   console.log(result)
 })
@@ -46,7 +49,7 @@ app.use(sessions({
 }));
 
 //première route basique de test de mise en place
-app.get('/',(req,res) => {
+app.get('/', (req,res) => {
   if(req.session.userid){
       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
   }else
@@ -73,8 +76,36 @@ app.get('/logout',(req,res) => {
   res.redirect('/');
 });
 
+
+// API endpoints //
+
+// créer un user 
+app.post('/createuser',(req,res) => {
+
+  // faire l'échappemment 
+  // dire au front de demander un mail valide 
+  // check if user exist 
+  var mail = req.body.mail
+  var mdp = req.body.mdp
+  var pseudo = req.body.pseudo
+
+  connection.query({
+  sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, '${mail}', '${mdp}', '${pseudo}')`, 
+  timeout: 40000}, function (err, result) {
+    if(err) throw err;
+    console.log(result)
+  })
+  res.send("utilisateur créé")
+})
+
+
+// créer un meuble 
+//app.post('/createmeuble',(req,res) => {
+
+//})
+
+
 // vérification dans la console que le serveur tourne et sur quel port.
 app.listen(process.env.PORT || 4000, () => {
-    console.log('Server running on :', process.env.PORT);
+  console.log('Server running on :', process.env.PORT);
 });
-
