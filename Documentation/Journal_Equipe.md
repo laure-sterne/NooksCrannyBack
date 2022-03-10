@@ -28,6 +28,28 @@ SURTOUT CELUI-LA https://www.section.io/engineering-education/session-management
 --> On a mis en place une version test, à modifier en fonction des besoins du front 
 
 
+Pour la suite; 
+
+--à mettre dans router.js:
+//route put pour modifier les meubles (pas encore effective, voir la fonction modifyFurniture)
+ router.put('./meubles/:meubles_id',controlMeuble.modifyFurniture)
+
+--à mettre dans meubleController:
+
+const fs = require('fs');
+const bcrypt = require('bcrypt')
+const connection = require('../connectionToBdd')
+
+//tentative de route pour pouvoir modifier les meubles (pas encore effective)
+ exports.modifyFurniture =(req, res)=>{
+     console.log("bonjour")
+    connection.query('UPDATE `meubles` SET `nom`=? WHERE `vendeur_id`= ?', [req.body.nom, req.body.vendeur_id], function (error, results) {
+        if (error) throw error;
+        console.log(results)
+     //    res.end(JSON.stringify(results));
+      });
+  };
+  
 
 
 
