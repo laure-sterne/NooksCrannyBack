@@ -21,7 +21,7 @@ exports.createMeuble = (req, res) => {
   var prix = parseInt(req.body.prix);
 
   // on récup l'id du vendeur dans les paramètres de la requête 
-  var vendeur_id = parseInt(req.params.idVendeur)
+  var vendeur_id = req.params.idVendeur
   
   connection.query(
           {

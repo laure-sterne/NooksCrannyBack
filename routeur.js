@@ -13,7 +13,7 @@ router.get('/user',controlUser.connected)
 router.get('/logout',controlUser.logOut)
 
 //route get furniture
-router.post('/meuble/:idVendeur', controlMeuble.createMeuble)
+router.post('/meuble/:idVendeur(\\d+)', controlMeuble.createMeuble)
 
 
 module.exports = router
