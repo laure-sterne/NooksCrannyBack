@@ -29,7 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `meubles` (
   `id` int(10) NOT NULL,
-  `photo` text NOT NULL,
+  `photo1` text NOT NULL,
+  `photo2` text DEFAULT NULL,
+  `photo3` text DEFAULT NULL,
+  `photo4` text DEFAULT NULL,
   `type` varchar(256) NOT NULL,
   `couleur` varchar(256) NOT NULL,
   `matière` varchar(256) NOT NULL,
