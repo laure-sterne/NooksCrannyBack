@@ -5,23 +5,12 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const bcrypt = require('bcrypt')
 const router = require('./routeur')
+const connection = require('./connectionToBdd')
+var mysql      = require('mysql');
 
-//username and password
-const myusername = 'user1'
-const mypassword = 'mypassword'
 
 //création d'une instance d'express
 const app = express();
-
-//connection à la BDD`
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  port : process.env.PORTPHP || 8889,
-  database : 'boutiquenook'
-});
 
 connection.connect(error => {
   if (error) throw error;

@@ -1,8 +1,11 @@
 const fs = require('fs');
 
- //username and password test
+ //username and password test 
  const myusername = 'user1'
  const mypassword = 'mypassword'
+
+const connection = require('../connectionToBdd')
+
 //identification user 
 exports.identifyUser =(req,res) =>{
 
@@ -17,8 +20,6 @@ exports.identifyUser =(req,res) =>{
     }
   }
 
-
-  
 // création d'un utilisateur 
  exports.createUser = async(req,res) =>{
 
