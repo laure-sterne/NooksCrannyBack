@@ -1,10 +1,11 @@
 const fs = require('fs');
+const bcrypt = require('bcrypt')
+const connection = require('../connectionToBdd')
 
  //username and password test 
  const myusername = 'user1'
  const mypassword = 'mypassword'
 
-const connection = require('../connectionToBdd')
 
 //identification user 
 exports.identifyUser =(req,res) =>{

@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
-const bcrypt = require('bcrypt')
 const router = require('./routeur')
 const connection = require('./connectionToBdd')
 var mysql      = require('mysql');
