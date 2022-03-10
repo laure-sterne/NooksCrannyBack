@@ -49,6 +49,24 @@ const connection = require('../connectionToBdd')
      //    res.end(JSON.stringify(results));
       });
   };
+  Jeudi 10 mars :
+debut de la route GET BY TYPE
+
+Qui va dans le route.js (a completer matiere, dimenssion)
+router.get('/:type/',controlMeuble.type)
+route.get ('/:color',controlMeuble.color)
+
+
+Qui va dans meubleController.js
+exports.type =(req,res) => {
+    console.log(req.params.type)
+
+    //res.send(`is a ${req.params.meubleid} `);
+}
+exports.color = (req,res) => {
+    
+}
+
   
 
 
