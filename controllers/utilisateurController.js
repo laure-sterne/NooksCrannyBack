@@ -1,17 +1,14 @@
-const fs = require('fs');
 const bcrypt = require('bcrypt')
 const connection = require('../connectionToBdd')
 
- //username and password test 
- const myusername = 'user1'
- const mypassword = 'mypassword'
+//username and password test 
+const myusername = 'user1'
+const mypassword = 'mypassword'
 
 
 //identification user 
 exports.identifyUser =(req,res) =>{
-
-
-    if(req.body.username == myusername && req.body.password == mypassword){
+  if(req.body.username == myusername && req.body.password == mypassword){
         req.session.userid=req.body.username;
         console.log(req.session)
         res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
@@ -19,10 +16,10 @@ exports.identifyUser =(req,res) =>{
     else{
         res.send('Invalid username or password');
     }
-  }
+}
 
 // création d'un utilisateur 
- exports.createUser = async(req,res) =>{
+exports.createUser = async(req,res) =>{
 
     // faire l'échappemment 
     var mail = connection.escape(req.body.mail)
@@ -49,25 +46,24 @@ exports.identifyUser =(req,res) =>{
     }
   }
   )
-  }
+}
 
 //  page d'accueil 
-
-  exports.welcome =(req,res) => {
+exports.welcome =(req,res) => {
       console.log('bonjour fonctionne')
     if(req.session.userid){
         res.send("Welcome User <a href=\'/logout'>click to logout</a>");
     }else
     res.sendFile('./index.html',{root:__dirname})
-  };
+};
 
-  //page après connexion 
-  exports.connected =(req,res)=>{
+//page après connexion 
+exports.connected =(req,res)=>{
     res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
-  }
+}
 
-  // déconnexion
+// déconnexion
   exports.logOut = (req,res) => {
     req.session.destroy();
     res.redirect('/');
-  };
+};

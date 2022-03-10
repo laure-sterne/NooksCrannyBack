@@ -13,8 +13,6 @@ router.get('/user',controlUser.connected)
 router.get('/logout',controlUser.logOut)
 
 //route get furniture
-
-
 module.exports = router
 
 
