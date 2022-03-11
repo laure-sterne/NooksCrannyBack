@@ -1,6 +1,20 @@
 const fs = require("fs");
 const connection = require("../connectionToBdd");
 
+exports.showMeuble = (req, res) => {
+  connection.query(
+    {
+      sql: 'SELECT * FROM meubles', 
+      timeout: 40000,
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result)
+    }
+  )
+}
+
 exports.createMeuble = (req, res) => {
   // on récupère les éléments de la requête qui sont des strings avec un escape 
   var name = connection.escape(req.body.nom);

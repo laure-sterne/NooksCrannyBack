@@ -12,8 +12,11 @@ router.get('/',controlUser.welcome)
 router.get('/user',controlUser.connected)
 router.get('/logout',controlUser.logOut)
 
-//route get furniture
+//route post furniture
 router.post('/meuble/:idVendeur(\\d+)', controlMeuble.createMeuble)
+
+//route get furniture
+router.get('/meubles', controlMeuble.showMeuble)
 
 
 module.exports = router
