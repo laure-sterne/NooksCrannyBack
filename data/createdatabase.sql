@@ -48,10 +48,10 @@ CREATE TABLE `meubles` (
 -- Dumping data for table `meubles`
 --
 
-INSERT INTO `meubles` (`id`, `photo`, `type`, `couleur`, `matière`, `largeur`, `longueur`, `hauteur`, `prix`, `statut`, `vendeur_id`) VALUES
+INSERT INTO `meubles` (`id`, `photo1`, `type`, `couleur`, `matière`, `largeur`, `longueur`, `hauteur`, `prix`, `statut`, `vendeur_id`) VALUES
 (1, 'https://static.wikia.nocookie.net/animalcrossing/images/0/03/NH-Furniture-Antique_wardrobe.png/revision/latest/scale-to-width-down/128?cb=20200617084648&path-prefix=fr', 'armoire ', 'marron', 'bois', 100, 50, 200, 450, 'disponible', 1),
-(2, '[\"https://static.wikia.nocookie.net/animalcrossing/images/6/62/NH-Furniture-Antique_bed.png/revision/latest/scale-to-width-down/128?cb=20200617085519&path-prefix=fr\", \"https://www.margxt.fr/wp-content/uploads/2020/04/Animal-Crossing-New-Horizons-Antique.jpg\"]', 'lit ', 'marron', 'bois', 140, 190, 40, 1700, 'disponible', 1),
-(3, '[\"https://jeuxpourtous.org/wp-content/uploads/2020/06/1591623704_148_%E3%80%90ACNH-Set-Ensemble-de-meubles-de-fruits-Liste-complete.png\", \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJtvC3yd5fztbju5JhaTG3m2ZKIn-h-OGpOQ&usqp=CAU\"]', 'chaise', 'rouge', 'pomme', NULL, NULL, NULL, 200, 'disponible', 2);
+(2, 'https://static.wikia.nocookie.net/animalcrossing/images/6/62/NH-Furniture-Antique_bed.png/revision/latest/scale-to-width-down/128?cb=20200617085519&path-prefix=fr\', 'lit ', 'marron', 'bois', 140, 190, 40, 1700, 'disponible', 1),
+(3, 'https://jeuxpourtous.org/wp-content/uploads/2020/06/1591623704_148_%E3%80%90ACNH-Set-Ensemble-de-meubles-de-fruits-Liste-complete.png\', 'chaise', 'rouge', 'pomme', NULL, NULL, NULL, 200, 'disponible', 2);
 
 -- --------------------------------------------------------
 
