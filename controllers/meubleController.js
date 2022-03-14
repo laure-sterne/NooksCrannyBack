@@ -63,35 +63,25 @@ exports.modifyFurniture = (req, res)=>{
   var photo2 = connection.escape(req.body.photo2);
   var photo3 = connection.escape(req.body.photo3);
   var photo4 = connection.escape(req.body.photo4);
-
   var largeur = parseInt(req.body.largeur);
   var longueur = parseInt(req.body.longueur);
   var hauteur = parseInt(req.body.hauteur);
   var prix = parseInt(req.body.prix);
 
-  var meuble_id = req.params.idMeuble
 
-  console.log("coucou je vais commencer mon travail !")
+  var parametre = Object.keys(req.body);
+  var valeur = Object.values(req.body);
+  var meuble_id = req.params.idMeuble;
+
+  console.log("je suis le potentiel paramètre", parametre)
 
   connection.query(
     {
     sql: `UPDATE meubles
-    SET description = ${description}, 
-    nom = ${name}, 
-    photo1 = ${photo1}, 
-    photo2 = ${photo2}, 
-    photo3 = ${photo3}, 
-    photo4 = ${photo4}, 
-    description = ${description}, 
-    type = ${type}, 
-    couleur = ${couleur}, 
-    matière = ${matiere}, 
-    largeur = ${largeur}, 
-    longueur = ${longueur}, 
-    hauteur = ${hauteur}, 
-    prix = ${prix}
+    SET ${parametre} = '${valeur}'
     WHERE id = ${meuble_id}`,
     timeout: 40000,
+
   },
   function (err, result) {
     if (err) throw err;
