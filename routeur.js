@@ -18,8 +18,7 @@ router.post('/meuble/:idVendeur(\\d+)', controlMeuble.createMeuble)
 //route get furniture
 router.get('/meubles', controlMeuble.showMeuble)
 
+//route put modify furniture
+router.put('/meubles/:meubles_id', controlMeuble.modifyFurniture)
 
 module.exports = router
-
-
-

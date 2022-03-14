@@ -5,7 +5,6 @@ const connection = require('../connectionToBdd')
 const myusername = 'user1'
 const mypassword = 'mypassword'
 
-
 //identification user 
 exports.identifyUser =(req,res) =>{
   if(req.body.username == myusername && req.body.password == mypassword){
@@ -30,7 +29,7 @@ exports.createUser = async(req,res) =>{
     // check if user exist 
     connection.query({
       sql: `SELECT mail FROM utilisateur WHERE mail = ${mail} `,
-      timeout: 40000}, function (err, result) {
+      timeout: 10000}, function (err, result) {
         if(err){throw err};
         if(result[0]){res.send("email déjà inscrit")
         console.log(result) } 
@@ -38,7 +37,7 @@ exports.createUser = async(req,res) =>{
   
     connection.query({
     sql: `INSERT INTO utilisateur (id, mail, mdp, pseudo) VALUES (NULL, ${mail}, '${mdp}', ${pseudo})`, 
-    timeout: 40000}, function (err, result) {
+    timeout: 10000}, function (err, result) {
       if(err) throw err;
       console.log(result)
     })
