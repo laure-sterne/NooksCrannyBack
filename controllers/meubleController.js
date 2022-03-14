@@ -51,7 +51,6 @@ exports.createMeuble = (req, res) => {
   res.send("meuble créé : ");
 };
 
-var meubles_id = req.params.meubles_id;
 
 /*exports.modifyFurniture = (req, res) => {
   connection.query(
@@ -71,6 +70,7 @@ var meubles_id = req.params.meubles_id;
 
 exports.modifyFurniture = (req, res) => {
   console.log("bonjour");
+  var meubles_id = req.params.meubles_id;
   connection.query(
     "UPDATE `meubles` SET `couleur`='gris' WHERE `meubles_id`= 1",
     [req.body.nom, req.body.meubles_id],
