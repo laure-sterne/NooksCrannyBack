@@ -1,4 +1,5 @@
 const fs = require("fs");
+const bcrypt = require('bcrypt');
 const connection = require("../connectionToBdd");
 
 exports.showMeuble = (req, res) => {
@@ -48,37 +49,27 @@ exports.createMeuble = (req, res) => {
       console.log(result);
     }
   );
-  res.send("meuble créé : ");
+  res.send("meuble créé");
 };
 
+exports.modifyFurniture = (req, res)=>{
+  
+  var meuble_id = req.params.idMeuble
 
-/*exports.modifyFurniture = (req, res) => {
+  console.log("coucou je vais commencer mon travail !")
+
   connection.query(
     {
-      sql: `UPDATE meubles,
-      SET couleur = 'gris',
-      WHERE ${meubles_id} = 1`,
-      timeout: 10000,
-    },
-    function (err, result) {
-      if (err) throw err;
-      console.log(result);
-    }
-  );
-  res.send("meuble modifié : ");
-};*/
+    sql: `UPDATE meubles
+    SET type = 'chaise'
+    WHERE id = ${meuble_id}`,
+    timeout: 40000,
+  },
+  function (err, result) {
+    if (err) throw err;
+    console.log(result);
+  }
+);
+res.send("meuble modifié");
 
-exports.modifyFurniture = (req, res) => {
-  console.log("bonjour");
-  var meubles_id = req.params.meubles_id;
-  connection.query(
-    "UPDATE `meubles` SET `couleur`='gris' WHERE `meubles_id`= 1",
-    [req.body.nom, req.body.meubles_id],
-    function (error, results) {
-      if (error) throw error;
-      console.log(results);
-      //    res.end(JSON.stringify(results));
-    }
-  );
-  res.send("meuble modifié : ");
 };
