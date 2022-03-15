@@ -16,6 +16,25 @@ exports.showMeuble = (req, res) => {
   );
 };
 
+exports.showOneMeuble = (req, res) => {
+
+  var meuble_id = req.params.meuble_id;
+  console.log('hola', meuble_id);
+
+  connection.query(
+    {
+      sql: `SELECT * FROM meubles
+      WHERE id = ${meuble_id}`,
+      timeout: 10000,
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+    }
+  );
+};
+
 exports.createMeuble = (req, res) => {
   // on récupère les éléments de la requête qui sont des strings avec un escape
   var name = connection.escape(req.body.nom);
@@ -80,7 +99,7 @@ exports.modifyFurniture = (req, res)=>{
     sql: `UPDATE meubles
     SET ${parametre} = '${valeur}'
     WHERE id = ${meuble_id}`,
-    timeout: 40000,
+    timeout: 10000,
 
   },
   function (err, result) {
