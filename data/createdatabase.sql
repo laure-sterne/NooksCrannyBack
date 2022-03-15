@@ -29,6 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `meubles` (
   `id` int(10) NOT NULL,
+  `nom`varchar(256) NOT NULL,
+  `description` text DEFAULT NULL,
   `photo1` text NOT NULL,
   `photo2` text DEFAULT NULL,
   `photo3` text DEFAULT NULL,
@@ -48,10 +50,10 @@ CREATE TABLE `meubles` (
 -- Dumping data for table `meubles`
 --
 
-INSERT INTO `meubles` (`id`, `photo1`, `type`, `couleur`, `matière`, `largeur`, `longueur`, `hauteur`, `prix`, `statut`, `vendeur_id`) VALUES
-(1, "https://static.wikia.nocookie.net/animalcrossing/images/0/03/NH-Furniture-Antique_wardrobe.png/revision/latest/scale-to-width-down/128?cb=20200617084648&path-prefix=fr", 'armoire ', 'marron', 'bois', 100, 50, 200, 450, 'disponible', 1),
-(2, "https://static.wikia.nocookie.net/animalcrossing/images/6/62/NH-Furniture-Antique_bed.png/revision/latest/scale-to-width-down/128?cb=20200617085519&path-prefix=fr", 'lit ', 'marron', 'bois', 140, 190, 40, 1700, 'disponible', 1),
-(3, "https://jeuxpourtous.org/wp-content/uploads/2020/06/1591623704_148_%E3%80%90ACNH-Set-Ensemble-de-meubles-de-fruits-Liste-complete.png", 'chaise', 'rouge', 'pomme', NULL, NULL, NULL, 200, 'disponible', 2);
+INSERT INTO `meubles` (`id`, `nom`,`description`, `photo1`, `type`, `couleur`, `matière`, `largeur`, `longueur`, `hauteur`, `prix`, `statut`, `vendeur_id`) VALUES
+(1, "armoire marron", "test", "https://static.wikia.nocookie.net/animalcrossing/images/0/03/NH-Furniture-Antique_wardrobe.png/revision/latest/scale-to-width-down/128?cb=20200617084648&path-prefix=fr", 'armoire ', 'marron', 'bois', 100, 50, 200, 450, 'disponible', 1),
+(2, "lit marron", NULL, "https://static.wikia.nocookie.net/animalcrossing/images/6/62/NH-Furniture-Antique_bed.png/revision/latest/scale-to-width-down/128?cb=20200617085519&path-prefix=fr", 'lit ', 'marron', 'bois', 140, 190, 40, 1700, 'disponible', 1),
+(3, "chaise rouge", NULL, "https://jeuxpourtous.org/wp-content/uploads/2020/06/1591623704_148_%E3%80%90ACNH-Set-Ensemble-de-meubles-de-fruits-Liste-complete.png", 'chaise', 'rouge', 'pomme', NULL, NULL, NULL, 200, 'disponible', 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,8 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `mail`, `mdp`, `pseudo`, `statut`) VALUES
 (1, 'tom@nook.ac', 'Plouf', 'TomNook', 'admin'),
-(2, 'victoire.stahl@gmail.com', 'Bloup', 'vico', 'acheteur');
+(2, 'victoire.stahl@gmail.com', 'Bloup', 'vico', 'acheteur'),
+(3, 'camille@test.com', 'test', 'Camille', 'acheteur');
 
 --
 -- Indexes for dumped tables

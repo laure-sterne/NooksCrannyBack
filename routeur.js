@@ -2,10 +2,12 @@ const express = require('express');
 const router =express.Router();
 const controlMeuble = require('./controllers/meubleController.js')
 const controlUser = require('./controllers/utilisateurController.js')
+var cors = require('cors')
+router.use(cors());
 
 //Route post user
 router.post('/user',controlUser.identifyUser)
-router.post('/createuser',controlUser.createUser)
+router.post('/createuser', controlUser.createUser)
 
 //Route get user
 router.get('/',controlUser.welcome)
@@ -17,9 +19,11 @@ router.post('/meuble/:idVendeur(\\d+)', controlMeuble.createMeuble)
 
 //route get furniture
 router.get('/meubles', controlMeuble.showMeuble)
+router.get('/meubles/:meuble_id', controlMeuble.showOneMeuble)
 
+//route put pour modifier les meubles
+router.put('/meuble/:idMeuble(\\d+)', controlMeuble.modifyFurniture)
 
 module.exports = router
-
 
 

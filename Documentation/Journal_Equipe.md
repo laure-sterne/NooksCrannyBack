@@ -36,9 +36,9 @@ Pour la suite;
 
 --à mettre dans meubleController:
 
-const fs = require('fs');
+const fs = require('fs'); -> DONE
 const bcrypt = require('bcrypt')
-const connection = require('../connectionToBdd')
+const connection = require('../connectionToBdd') -> DONE
 
 //tentative de route pour pouvoir modifier les meubles (pas encore effective)
  exports.modifyFurniture =(req, res)=>{
