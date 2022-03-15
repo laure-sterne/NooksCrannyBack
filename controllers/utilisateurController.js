@@ -2,18 +2,19 @@ const bcrypt = require('bcrypt')
 const connection = require('../connectionToBdd')
 
 //username and password test 
-const myusername = 'user1'
+const myEmail = 'user1@u.fr'
 const mypassword = 'mypassword'
 
 //identification user 
 exports.identifyUser =(req,res) =>{
-  if(req.body.username == myusername && req.body.password == mypassword){
-        req.session.userid=req.body.username;
+  console.log("somone if trying to login")
+  if(req.body.email == myEmail && req.body.password == mypassword){
+        req.session.userid = req.body.email;
         console.log(req.session)
-        res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
+        res.send({ok: "ok"});
     }
-    else{
-        res.send('Invalid username or password');
+    else {
+        res.send({ok: "notok"});
     }
 }
 
