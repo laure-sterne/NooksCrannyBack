@@ -11,10 +11,10 @@ exports.identifyUser =(req,res) =>{
   if(req.body.email == myEmail && req.body.password == mypassword){
         req.session.userid = req.body.email;
         console.log(req.session)
-        res.send(`Hey there, welcome ${req.session.userid} <a href=\'/logout'>click to logout</a>`);
+        res.send({ok: "ok"});
     }
     else {
-        res.send('Invalid username or password');
+        res.send({ok: "notok"});
     }
 }
 
