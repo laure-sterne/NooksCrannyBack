@@ -32,8 +32,10 @@ exports.createUser = async(req,res) =>{
       sql: `SELECT mail FROM utilisateur WHERE mail = ${mail} `,
       timeout: 10000}, function (err, result) {
         if(err){throw err};
-        if(result[0]){res.send("email déjà inscrit")
-        console.log(result) } 
+        if(result[0]){res.send({okk:"email déjà inscrit"});
+        console.log(result) 
+        console.log("fini")
+      } 
         else {
   
     connection.query({
@@ -42,7 +44,8 @@ exports.createUser = async(req,res) =>{
       if(err) throw err;
       console.log(result)
     })
-    res.send("utilisateur créé")
+    console.log("fini")
+    res.send({okk:"utilisateur créé"});
     }
   }
   )
