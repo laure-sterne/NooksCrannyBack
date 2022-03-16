@@ -15,14 +15,15 @@ router.get('/user',controlUser.connected)
 router.get('/logout',controlUser.logOut)
 
 //route post furniture
-router.post('/meuble/:idVendeur(\\d+)', controlMeuble.createMeuble)
+router.post('/meubles/:idVendeur(\\d+)', controlMeuble.createMeuble)
 
 //route get furniture
 router.get('/meubles', controlMeuble.showMeuble)
 router.get('/meubles/:meuble_id', controlMeuble.showOneMeuble)
 
-//route put pour modifier les meubles
-router.put('/meuble/:idMeuble(\\d+)', controlMeuble.modifyFurniture)
+//route patch pour modifier les meubles
+router.patch('/meubles/:idMeuble(\\d+)', controlMeuble.modifyFurniture)
+router.patch('/meubles/status/:idMeuble(\\d+)', controlMeuble.changeStatus)
 
 module.exports = router
 

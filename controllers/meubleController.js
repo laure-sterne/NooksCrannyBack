@@ -72,41 +72,44 @@ exports.createMeuble = (req, res) => {
 };
 
 exports.modifyFurniture = (req, res)=>{
-  
-  var name = connection.escape(req.body.nom);
-  var description = connection.escape(req.body.description);
-  var type = connection.escape(req.body.type);
-  var couleur = connection.escape(req.body.couleur);
-  var matiere = connection.escape(req.body.matiere);
-  var photo1 = connection.escape(req.body.photo1);
-  var photo2 = connection.escape(req.body.photo2);
-  var photo3 = connection.escape(req.body.photo3);
-  var photo4 = connection.escape(req.body.photo4);
-  var largeur = parseInt(req.body.largeur);
-  var longueur = parseInt(req.body.longueur);
-  var hauteur = parseInt(req.body.hauteur);
-  var prix = parseInt(req.body.prix);
-
 
   var parametre = Object.keys(req.body);
   var valeur = Object.values(req.body);
   var meuble_id = req.params.idMeuble;
+  var query = ``
+
+  let i = 0
+  while(i < parametre.length){
+
+  if (i == parametre.length-1){
+    query += `${Object.values(parametre)[i]} = '${Object.values(valeur)[i]}'`;
+  } else {
+    query += `${Object.values(parametre)[i]} = '${Object.values(valeur)[i]}', `;
+  }
 
   console.log("je suis le potentiel paramètre", parametre)
+  console.log("je suis une valeur youhou", valeur)
+  console.log("je suis la gentille query", query);
+
+  i++;
+  }
 
   connection.query(
     {
     sql: `UPDATE meubles
-    SET ${parametre} = '${valeur}'
+    SET ${query} 
     WHERE id = ${meuble_id}`,
     timeout: 10000,
-
   },
   function (err, result) {
     if (err) throw err;
     console.log(result);
-  }
-);
-res.send("meuble modifié");
+  })
+
+  res.send("meuble modifié");
 
 };
+
+exports.changeStatus = (req, res)=>{
+
+}
