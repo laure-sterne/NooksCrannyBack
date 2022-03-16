@@ -23,6 +23,7 @@ router.get('/meubles/:meuble_id', controlMeuble.showOneMeuble)
 
 //route patch pour modifier les meubles
 router.patch('/meubles/:idMeuble(\\d+)', controlMeuble.modifyFurniture)
+router.patch('/meubles/status/:idMeuble(\\d+)', controlMeuble.changeStatus)
 
 module.exports = router
 

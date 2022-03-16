@@ -97,7 +97,7 @@ exports.modifyFurniture = (req, res)=>{
   connection.query(
     {
     sql: `UPDATE meubles
-    SET ${query}
+    SET ${query} 
     WHERE id = ${meuble_id}`,
     timeout: 10000,
   },
@@ -109,3 +109,7 @@ exports.modifyFurniture = (req, res)=>{
   res.send("meuble modifié");
 
 };
+
+exports.changeStatus = (req, res)=>{
+
+}
