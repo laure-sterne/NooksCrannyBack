@@ -107,9 +107,45 @@ exports.modifyFurniture = (req, res)=>{
   })
 
   res.send("meuble modifié");
-
 };
 
-exports.changeStatus = (req, res)=>{
+changeStatus = (req, result, meuble_id)=> {
+  var query = ``
+  console.log(Object.values(result[0]))
 
+  if (Object.values(result[0])== 'disponible'){
+    console.log(result, 'disponible => indisponible')
+    query = `UPDATE meubles SET statut = 'indisponible' WHERE id = ${meuble_id}`
+  } else if(Object.values(result[0]) == 'indisponible'){
+    console.log(result, 'indisponible => disponible')
+    query = `UPDATE meubles SET statut = 'disponible' WHERE id = ${meuble_id}`
+  } else {
+    console.log('coucou', result)
+  }
+  connection.query(
+    {
+      sql: `${query}`
+    },
+  function (err, result) {
+    if (err) throw err;
+    console.log(result);}
+  )
 }
+
+exports.readStatus = (req, res)=>{
+  //var statut = connection.escape(req.body.statut)
+  var meuble_id = req.params.idMeuble;
+
+  connection.query(
+  {
+    sql: `SELECT statut FROM meubles WHERE id = ${meuble_id}` 
+  },
+    function (err, result) {
+    if (err) throw err;
+    console.log('je me trouve dans readStatus', result);
+    res.send(result)
+    changeStatus(req, result, meuble_id)
+  }
+  )
+}
+
