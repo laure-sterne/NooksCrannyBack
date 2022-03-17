@@ -149,3 +149,17 @@ exports.readStatus = (req, res)=>{
   )
 }
 
+exports.getByType = (req, res)=>{
+  var valueType = connection.escape(req.body.type)
+  console.log("je suis la valueType", valueType)
+  connection.query(
+    {
+      sql: `SELECT type = '${valueType}' FROM meubles` 
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result)
+    }
+  )
+}
