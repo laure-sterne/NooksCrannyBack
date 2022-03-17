@@ -1,52 +1,43 @@
 const bcrypt = require('bcrypt')
 const connection = require('../connectionToBdd')
 
-identifyUser = async (req, resu, result, myEmail, myPassword) => {
+identifyUser =  (req, resp, result, myPassword) => {
   console.log("Tentative de connexion");
-  console.log("je suis un résultat", (Object.values(result[0])[1]));
+  console.log("je suis un résultat");
   var hash = Object.values(result[0])[1]
-  var verif = false 
-  await bcrypt.compare(myPassword, hash.toString(), 
+  bcrypt.compare(myPassword, hash.toString(), 
     function(err, res) {
       if (err) {
-        console.log(err)
+        throw err;
       }
       if (res) {
-        console.log("ok")
         console.log(req.session, "User trouvé");
-        verif = true;
-        resu.send({ok: "ok",
+        resp.send({ok: "ok",
         result: result[0]});
       } else {
-        console.log("non")
-        return false
+        resp.send({ok: "notOk"})
       }
     })
-  console.log(verif)
-  return verif
 }
 
 //identification user 
 exports.selectUserData = async(req,res) => {
   var myEmail = connection.escape(req.body.mail);
   var myPassword = connection.escape(req.body.mdp);
-  console.log(myPassword);
   connection.query({
       sql: `SELECT mail, mdp, pseudo, statut FROM utilisateur WHERE mail = ${myEmail}`,
       timeout: 10000}, 
       function (err, result) {
-        if(err) throw err;
-        console.log("je suis le premier résultat", result);
-        identifyUser(req, res, result, myEmail, myPassword);
-        /* if (identifyUser(req, res, result,myEmail,myPassword) == true) {
-          req.session.userid = req.body.mail;
-          res.send({ok: "ok",
-          result: result[0]});
+        if(err) { 
+          throw err;
+        }
+        else if (result[0]) {
+        // console.log("je suis le premier résultat", result);
+        identifyUser(req, res, result, myPassword);
         }
         else {
-          res.send({ok: "notok"});
+          res.send({ok : "notOk"})
         }
-      }) */
     })
   }
 
