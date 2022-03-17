@@ -20,6 +20,7 @@ router.post('/meubles/:idVendeur(\\d+)', controlMeuble.createMeuble)
 //route get furniture
 router.get('/meubles', controlMeuble.showMeuble)
 router.get('/meubles/type', controlMeuble.getByType)
+router.get('/meubles/any',controlMeuble.getByAny)
 router.get('/meubles/:meuble_id', controlMeuble.showOneMeuble)
 
 

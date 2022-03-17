@@ -163,3 +163,20 @@ exports.getByType = (req, res)=>{
     }
   )
 }
+
+exports.getByAny= (req, res)=>{
+  var parametre = Object.keys(req.body)[0];
+  console.log ("je suis le parametre", parametre)
+  var valueType = Object.values (req.body)[0]
+  console.log("je suis la valueType", valueType)
+  connection.query(
+    {
+      sql: `SELECT * FROM meubles WHERE ${parametre} = "${valueType}"` 
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result)
+    }
+  )
+}
