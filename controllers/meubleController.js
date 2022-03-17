@@ -151,10 +151,10 @@ exports.readStatus = (req, res)=>{
 
 exports.getByType = (req, res)=>{
   var valueType = connection.escape(req.body.type)
-  console.log("je suis la valueType", valueType)
+  console.log("je suis la valueType", typeof(valueType))
   connection.query(
     {
-      sql: `SELECT type = '${valueType}' FROM meubles` 
+      sql: `SELECT * FROM meubles WHERE type = ${valueType}` 
     },
     function (err, result) {
       if (err) throw err;
