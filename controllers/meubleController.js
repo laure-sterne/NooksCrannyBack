@@ -149,3 +149,34 @@ exports.readStatus = (req, res)=>{
   )
 }
 
+exports.getByType = (req, res)=>{
+  var valueType = connection.escape(req.body.type)
+  console.log("je suis la valueType", typeof(valueType))
+  connection.query(
+    {
+      sql: `SELECT * FROM meubles WHERE type = ${valueType}` 
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result)
+    }
+  )
+}
+
+exports.getByAny= (req, res)=>{
+  var parametre = Object.keys(req.body)[0];
+  console.log ("je suis le parametre", parametre)
+  var valueType = Object.values (req.body)[0]
+  console.log("je suis la valueType", valueType)
+  connection.query(
+    {
+      sql: `SELECT * FROM meubles WHERE ${parametre} = "${valueType}"` 
+    },
+    function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result)
+    }
+  )
+}
