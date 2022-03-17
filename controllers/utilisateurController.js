@@ -20,7 +20,7 @@ exports.selectUserData = (req,res) => {
   var myPassword = connection.escape(req.body.mdp);
   console.log(myPassword);
   connection.query({
-      sql: `SELECT mail, mdp FROM utilisateur WHERE mail = ${myEmail}`,
+      sql: `SELECT mail, mdp, pseudo, statut FROM utilisateur WHERE mail = ${myEmail}`,
       timeout: 10000}, 
       function (err, result) {
         if(err) throw err;
@@ -28,7 +28,8 @@ exports.selectUserData = (req,res) => {
         identifyUser(req,result,res,myEmail,myPassword);
         if (identifyUser(req,result,res,myEmail,myPassword) == true) {
           req.session.userid = req.body.mail;
-          res.send({ok: "ok"});
+          res.send({ok: "ok",
+        result : result[0]});
         }
         else {
           res.send({ok: "notok"});
