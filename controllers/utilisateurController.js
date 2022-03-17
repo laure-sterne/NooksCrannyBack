@@ -20,7 +20,11 @@ exports.selectUserData = (req,res) => {
   var myPassword = connection.escape(req.body.mdp);
   console.log(myPassword);
   connection.query({
+<<<<<<< HEAD
       sql: `SELECT * FROM utilisateur WHERE mail = ${myEmail}`,
+=======
+      sql: `SELECT mail, mdp, pseudo, statut FROM utilisateur WHERE mail = ${myEmail}`,
+>>>>>>> e0d57dc23a4e08a9242c14432ede7d1bb7a5056b
       timeout: 10000}, 
       function (err, result) {
         if(err) throw err;
@@ -29,7 +33,11 @@ exports.selectUserData = (req,res) => {
         if (identifyUser(req,result,res,myEmail,myPassword) == true) {
           req.session.userid = req.body.mail;
           res.send({ok: "ok",
+<<<<<<< HEAD
           result: result[0]});
+=======
+        result : result[0]});
+>>>>>>> e0d57dc23a4e08a9242c14432ede7d1bb7a5056b
         }
         else {
           res.send({ok: "notok"});
@@ -51,8 +59,10 @@ exports.createUser = async(req,res) =>{
       sql: `SELECT mail FROM utilisateur WHERE mail = ${mail} `,
       timeout: 10000}, function (err, result) {
         if(err){throw err};
-        if(result[0]){res.send("email déjà inscrit")
-        console.log(result) } 
+        if(result[0]){res.send({okk:"email déjà inscrit"});
+        console.log(result) 
+        console.log("fini")
+      } 
         else {
   
     connection.query({
@@ -61,7 +71,8 @@ exports.createUser = async(req,res) =>{
       if(err) throw err;
       console.log(result)
     })
-    res.send("utilisateur créé")
+    console.log("fini")
+    res.send({okk:"utilisateur créé"});
     }
   }
   )
