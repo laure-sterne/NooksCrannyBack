@@ -2,25 +2,43 @@ const bcrypt = require('bcrypt')
 const connection = require('../connectionToBdd')
 
 //username and password test 
-const myEmail = 'user1@u.fr'
-const mypassword = 'mypassword'
+//const myEmail = 'user1@u.fr'
+//const myPassword = 'mypassword'
+
+identifyUser = (req,result,res,myEmail,myPassword) => {
+  console.log("Tentative de connexion");
+  console.log("je suis un résultat", result);
+  if(connection.escape(Object.values(result[0])[0])== myEmail && (connection.escape(Object.values(result[0])[1]) == myPassword)){
+    console.log(req.session, "User trouvé");
+    return true;
+  }
+}
 
 //identification user 
-exports.identifyUser =(req,res) =>{
-  console.log("somone if trying to login")
-  if(req.body.email == myEmail && req.body.password == mypassword){
-        req.session.userid = req.body.email;
-        console.log(req.session)
-        res.send({ok: "ok"});
-    }
-    else {
-        res.send({ok: "notok"});
-    }
+exports.selectUserData = (req,res) => {
+  var myEmail = connection.escape(req.body.mail);
+  var myPassword = connection.escape(req.body.mdp);
+  console.log(myPassword);
+  connection.query({
+      sql: `SELECT mail, mdp FROM utilisateur WHERE mail = ${myEmail}`,
+      timeout: 10000}, 
+      function (err, result) {
+        if(err) throw err;
+        console.log("je suis le premier résultat",result);
+        identifyUser(req,result,res,myEmail,myPassword);
+        if (identifyUser(req,result,res,myEmail,myPassword) == true) {
+          req.session.userid = req.body.mail;
+          res.send({ok: "ok"});
+        }
+        else {
+          res.send({ok: "notok"});
+        }
+        
+      })
 }
 
 // création d'un utilisateur 
 exports.createUser = async(req,res) =>{
-
     // faire l'échappemment 
     var mail = connection.escape(req.body.mail)
     var pseudo = connection.escape(req.body.pseudo)

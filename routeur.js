@@ -6,7 +6,7 @@ var cors = require('cors')
 router.use(cors());
 
 //Route post user
-router.post('/user',controlUser.identifyUser)
+router.post('/user',controlUser.selectUserData)
 router.post('/createuser', controlUser.createUser)
 
 //Route get user
