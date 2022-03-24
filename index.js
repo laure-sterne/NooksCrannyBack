@@ -1,4 +1,4 @@
-//on appelle le fichier .env qui contient les variables d'environnement et doit rester secret. Il est à créer en prenant le .env.example pour modèle
+//on appelle le fichier .env qui contient les variables d'environnement et doit rester secret. Il est à créer en prenant le .env.example pour modèle.
 require('dotenv').config();
 const express = require('express');
 const cookieParser = require("cookie-parser");
@@ -8,7 +8,7 @@ const connection = require('./connectionToBdd')
 var mysql      = require('mysql');
 
 
-//création d'une instance d'express
+//création d'une instance d'express.
 const app = express();
 
 connection.connect(error => {
