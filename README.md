@@ -105,7 +105,7 @@ Here are some other projects realized during [Ada Tech School](https://adatechsc
 
   🦔 [Petit Hérisson Pipou](https://github.com/laure-sterne/petitHerissonPipou) : a social network whose mascot is a hedgehog.
 
-  🪑 [Nook's Cranny Front](https://github.com/laure-sterne/nooksCrannyFront) : the other side of this project, let's explore the front with his components and views.
+  🛋 [Nook's Cranny Front](https://github.com/laure-sterne/nooksCrannyFront) : the other side of this project, let's explore the front with his components and views.
 
   🐾 [Teckelkephotos](https://github.com/laure-sterne/teckelkephotos) : a special social network for dachshund lovers.
 
