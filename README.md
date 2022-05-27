@@ -1,8 +1,8 @@
-# Nook's Cranny – Front
+# Nook's Cranny – Back
 
 Nook's Cranny is a website for people who are in love with furniture. But not just any piece of furniture, because there are unique and recyclable!
 
-Discovered the front world of Nook's Cranny in this repository!
+Discovered the back world of Nook's Cranny in this repository!
 
 ## Tech Stack
 
